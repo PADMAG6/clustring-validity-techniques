@@ -1,0 +1,19 @@
+library(readxl)
+totoal_data_with_avgprice <- read_excel("C:/Users/padmag6/Desktop/totoal data with avgprice.xlsx")
+View(totoal_data_with_avgprice)
+data<-kmeans(totoal_data_with_avgprice$`Average Price`,2)
+data
+data1<-kmeans(totoal_data_with_avgprice$`Average Price`,3)
+data1
+install.packages("fossil")
+library(fossil)
+randindex<- rand.index(data$cluster,data1$cluster)
+randindex
+install.packages("e1071")
+library(e1071)
+datafuzzy<-cmeans(totoal_data_with_avgprice$`Average Price`,2)
+datafuzzy
+datafuzzy1<-cmeans(totoal_data_with_avgprice$`Average Price`,3)
+datafuzzy1
+randindexfuzzy<-rand.index(datafuzzy$cluster,datafuzzy1$cluster)
+randindexfuzzy
