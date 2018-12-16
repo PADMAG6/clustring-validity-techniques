@@ -17,3 +17,10 @@ datafuzzy1<-cmeans(totoal_data_with_avgprice$`Average Price`,3)
 datafuzzy1
 randindexfuzzy<-rand.index(datafuzzy$cluster,datafuzzy1$cluster)
 randindexfuzzy
+datahclust<-hclust(dist(totoal_data_with_avgprice$`Average Price`))
+datahclust1<-cutree(datahclust,2)
+datahclust1
+datahclust2<-cutree(datahclust,3)
+datahclust2
+randindexhclust<-rand.index(datahclust1,datahclust2)
+randindexhclust
