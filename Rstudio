@@ -24,3 +24,20 @@ datahclust2<-cutree(datahclust,3)
 datahclust2
 randindexhclust<-rand.index(datahclust1,datahclust2)
 randindexhclust
+
+# Jaccard external cluster validity index value using "clusterCrit" package
+data<-read.csv(file=file.choose(),header=T)
+View(data)
+data1<-data$Average.Price
+View(data1)
+install.packages("clusterCrit") 
+library(clusterCrit)
+part1<-kmeans(data1,2)
+part2<-kmeans(data1,3)
+extidx<-extCriteria(part1$cluster,part2$cluster,c("Jaccard"))
+extidx
+library(e1071)
+part1<-cmeans(data1,2)
+part2<-cmeans(data1,3)
+extidx1<-extCriteria(part1$cluster,part2$cluster,c("Jaccard"))
+extidx1
