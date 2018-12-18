@@ -35,9 +35,31 @@ library(clusterCrit)
 part1<-kmeans(data1,2)
 part2<-kmeans(data1,3)
 extidx<-extCriteria(part1$cluster,part2$cluster,c("Jaccard"))
-extidx
+extidx # 0.5071
 library(e1071)
 part1<-cmeans(data1,2)
 part2<-cmeans(data1,3)
 extidx1<-extCriteria(part1$cluster,part2$cluster,c("Jaccard"))
-extidx1
+extidx1 # 0.5033
+
+#dunn and c_index cluster validation values
+x<-matrix(data1,ncol=1)
+y<-kmeans(x,2)
+library(clusterCrit)
+data<-intCriteria(x,y$cluster,c("dunn","c_index"))
+data  #dunn 0.75609, c_index 1.488108e-05
+x<-matrix(data1,ncol=1)
+y<-kmeans(x,3)
+library(clusterCrit)
+data<-intCriteria(x,y$cluster,c("dunn","c_index"))
+data   #dunn 0.0002551, c_index 0.06002825
+x<-matrix(data1,ncol=1)
+y<-cmeans(x,2)
+library(clusterCrit)
+data<-intCriteria(x,y$cluster,c("dunn","c_index"))
+data  # dunn 0.7560901, c_index 1.488108e-05
+x<-matrix(data1,ncol=1)
+y<-cmeans(x,3)
+library(clusterCrit)
+data<-intCriteria(x,y$cluster,c("dunn","c_index"))
+data  #dunn 0.00017282, c_index 0.061715
